@@ -16,6 +16,8 @@ public:
         assert(y != NAN);
         assert(z != NAN);
     };
+
+    Tuple3() : x{}, y{}, z{} {};
     bool HasNaN() const { return IsNaN(x) || IsNaN(y) || IsNaN(z);}
 
     T operator[](int i) const {
@@ -30,6 +32,13 @@ public:
         return z;
     }
 
+    bool operator==(Child<T> c) {
+        return x == c.x && y == c.y && z == c.z;
+    }
+
+    bool operator!=(Child<T> c) {
+        return x != c.x || y != c.y || z != c.z;
+    }
 
     // This function returns a new Tuple of type Child with an inner type
     // That is decided by C++'s type promotion rules (purpose for decltype)
@@ -45,12 +54,12 @@ public:
 
     // Do we need to do type matching here?
     template <typename U>
-    Tuple3& operator+=(Child <U> c){
+    Child<T> &operator+=(Child <U> c){
         x+=c.x;
         y+=c.y;
         z+=c.z;
+        return static_cast<Child<T> &>(*this);
     }
-
 
     template <typename U>
     auto operator*(U c) const -> Child<decltype(T{} + U{})> {
