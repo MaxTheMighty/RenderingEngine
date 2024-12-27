@@ -5,9 +5,14 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(RenderingEngine main.cpp
         include/tuple2.h
+        include/tuple3.h
+        include/normal3.h
+        include/point3.h
         src/tuple2.cpp
         src/tuple3.cpp
-        include/tuple3.h)
+        src/normal3.cpp
+        src/vector3.cpp
+        src/point3.cpp)
 
 
 

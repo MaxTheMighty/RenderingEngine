@@ -79,6 +79,11 @@ BOOST_AUTO_TEST_CASE(NormalToVector3) {
     BOOST_CHECK(vec3i == Vector3i(1,2,3));
 }
 
+BOOST_AUTO_TEST_CASE(Vector3Length) {
+    Vector3f vec3f(50.0,20.0,30.0);
+    // float length = Vector3f::Length(vec3f);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 

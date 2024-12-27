@@ -8,6 +8,7 @@
 #include "tuple3.h"
 #include "point3.h"
 #include "normal3.h"
+#include "tuplelength.h"
 template <typename T>
 
 class Vector3 : public Tuple3<Vector3, T> {
@@ -23,6 +24,9 @@ class Vector3 : public Tuple3<Vector3, T> {
 
       template <typename U>
       explicit Vector3(Normal3<U> n) : Tuple3<Vector3,T>(T(n.x),T(n.y),T(n.z)){};
+
+      T LengthSquared(Vector3<T> v);
+      auto Length(Vector3<T> v) -> typename TupleLength<T>::type;
 
 };
 
