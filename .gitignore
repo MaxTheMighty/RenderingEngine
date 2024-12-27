@@ -9,3 +9,4 @@ CTestTestfile.cmake
 /engine/cmake_install.cmake
 /engine/CMakeCache.txt
 /engine/CTestTestfile.cmake
+/Testing/
