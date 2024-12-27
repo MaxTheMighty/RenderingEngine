@@ -1,8 +1,0 @@
-/Users/maxwell/Programming/C++/RenderingEngine/CMakeFiles/test_runner.dir
-/Users/maxwell/Programming/C++/RenderingEngine/CMakeFiles/test.dir
-/Users/maxwell/Programming/C++/RenderingEngine/CMakeFiles/edit_cache.dir
-/Users/maxwell/Programming/C++/RenderingEngine/CMakeFiles/rebuild_cache.dir
-/Users/maxwell/Programming/C++/RenderingEngine/engine/CMakeFiles/RenderingEngine.dir
-/Users/maxwell/Programming/C++/RenderingEngine/engine/CMakeFiles/test.dir
-/Users/maxwell/Programming/C++/RenderingEngine/engine/CMakeFiles/edit_cache.dir
-/Users/maxwell/Programming/C++/RenderingEngine/engine/CMakeFiles/rebuild_cache.dir

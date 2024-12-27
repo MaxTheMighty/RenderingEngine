@@ -15,6 +15,8 @@ include_directories(${Boost_INCLUDE_DIRS})
 # Create a list of all your test source files (excluding test_runner.cpp)
 set(TEST_SOURCES
         tests/src/vector_tests.cpp
+        tests/src/point_tests.cpp
+        tests/src/normal_tests.cpp
         # Add other test files here
 )
 

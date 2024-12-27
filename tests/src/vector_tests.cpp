@@ -5,6 +5,7 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 #include "../../engine/include/vector3.h"
+#include "../../engine/include/normal3.h"
 #pragma once
 
 BOOST_AUTO_TEST_SUITE(VectorTests);
@@ -66,7 +67,17 @@ BOOST_AUTO_TEST_CASE(Vector3Subtraction) {
     BOOST_CHECK(vec3f3 == Vector3f(8.5f,19.0f,19.5f));
 }
 
+BOOST_AUTO_TEST_CASE(PointToVector3) {
+    Point3f point(1.1f,2.2f,3.3f);
+    Vector3f vec3f(point);
+    BOOST_CHECK(vec3f == Vector3f(1.1f,2.2f,3.3f));
+}
 
+BOOST_AUTO_TEST_CASE(NormalToVector3) {
+    Normal3f norm3f(1.1f,2.2f,3.3f);
+    Vector3<int> vec3i(norm3f);
+    BOOST_CHECK(vec3i == Vector3i(1,2,3));
+}
 
 BOOST_AUTO_TEST_SUITE_END()
 

@@ -1,4 +1,4 @@
 tests 0 0
 MyTests 8 0.000389016
-all_tests 19 0.00953047
+all_tests 26 0.00682644
 ---
