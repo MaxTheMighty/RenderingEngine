@@ -9,6 +9,7 @@
 #include "point3.h"
 #include "normal3.h"
 #include "tuplelength.h"
+#include <cmath>
 template <typename T>
 
 class Vector3 : public Tuple3<Vector3, T> {
@@ -25,12 +26,34 @@ class Vector3 : public Tuple3<Vector3, T> {
       template <typename U>
       explicit Vector3(Normal3<U> n) : Tuple3<Vector3,T>(T(n.x),T(n.y),T(n.z)){};
 
-      T LengthSquared(Vector3<T> v);
-      auto Length(Vector3<T> v) -> typename TupleLength<T>::type;
+      static T LengthSquared(Vector3<T> v) {
+          return (v.x*v.x) + (v.y*v.y) + (v.z * v.z);
+      }
+
+      static auto Length(const Vector3<T> v) -> typename TupleLength<T>::type{
+          return std::sqrt(LengthSquared(v));
+      }
+
+      // In this situation, we use AUTO because the return type is defined by the division operator
+      // For the underlying Tuple3 class (using decltype magic)
+      static auto Normalize(const Vector3<T> v) {
+          return v / Length(v);
+      }
+
+      static T Dot(Vector3<T> v, Vector3<T> w) {
+          return {(v.x * w.x) + (v.y * w.y) + (v.z * w.z)};
+      }
+
+      static T CalculateAngleBetween(Vector3<T> v, Vector3<T> w) {
+          // Look into why PBRT does it differently
+          return (std::acos(Dot(v,w) / (Length(v) * Length(w)))) * (180/M_PI);
+      }
+
 
 };
 
 using Vector3f = Vector3<float>;
 using Vector3i = Vector3<int>;
+
 
 #endif //VECTOR3_H

@@ -6,7 +6,7 @@
 #include <boost/test/unit_test.hpp>
 #include "../../engine/include/vector3.h"
 #include "../../engine/include/normal3.h"
-#pragma once
+
 
 BOOST_AUTO_TEST_SUITE(VectorTests);
 
@@ -67,6 +67,28 @@ BOOST_AUTO_TEST_CASE(Vector3Subtraction) {
     BOOST_CHECK(vec3f3 == Vector3f(8.5f,19.0f,19.5f));
 }
 
+BOOST_AUTO_TEST_CASE(Vector3Multiplication) {
+    Vector3f vec3f(10,20,30);
+    BOOST_CHECK(vec3f*10 == Vector3f(100,200,300));
+}
+
+BOOST_AUTO_TEST_CASE(Vector3MultiplicationInplace) {
+    Vector3f vec3f(10,20,30);
+    vec3f*=10;
+    BOOST_CHECK(vec3f == Vector3f(100,200,300));
+}
+
+BOOST_AUTO_TEST_CASE(Vector3Division) {
+    Vector3f vec3f(10,20,30);
+    BOOST_CHECK(vec3f/10 == Vector3f(1,2,3));
+}
+
+BOOST_AUTO_TEST_CASE(Vector3DivisionInplace) {
+    Vector3f vec3f(10,20,30);
+    vec3f/=10;
+    BOOST_CHECK(vec3f == Vector3f(1,2,3));
+}
+
 BOOST_AUTO_TEST_CASE(PointToVector3) {
     Point3f point(1.1f,2.2f,3.3f);
     Vector3f vec3f(point);
@@ -80,8 +102,31 @@ BOOST_AUTO_TEST_CASE(NormalToVector3) {
 }
 
 BOOST_AUTO_TEST_CASE(Vector3Length) {
+    float epsilon = 0.001;
     Vector3f vec3f(50.0,20.0,30.0);
-    // float length = Vector3f::Length(vec3f);
+    float length = Vector3<float>::Length(vec3f);
+    BOOST_CHECK(fabs(length-sqrt(3800) <= epsilon));
+}
+
+BOOST_AUTO_TEST_CASE(Vector3Normalized) {
+    Vector3f vec3f(10,20,30);
+    BOOST_CHECK(Vector3f::Normalize(vec3f) == Vector3f(1/sqrt(14),2/sqrt(14),3/sqrt(14)));
+}
+
+BOOST_AUTO_TEST_CASE(Vector3Dot) {
+    Vector3f vec3fa(10,20,30);
+    Vector3f vec3fb(40,50,60);
+    float dot = Vector3f::Dot(vec3fa,vec3fb);
+    BOOST_CHECK_EQUAL(dot,3200);
+
+}
+
+BOOST_AUTO_TEST_CASE(Vector3Angle) {
+    Vector3f vec3fa(4,2,1);
+    Vector3f vec3fb(3,-1,5);
+    float angle = Vector3f::CalculateAngleBetween(vec3fa,vec3fb);
+    BOOST_CHECK_EQUAL(angle,56.407);
+
 }
 
 BOOST_AUTO_TEST_SUITE_END()
