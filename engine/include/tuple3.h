@@ -61,11 +61,33 @@ public:
         return static_cast<Child<T> &>(*this);
     }
 
+
     template <typename U>
     auto operator*(U c) const -> Child<decltype(T{} + U{})> {
         return {x*c, y*c, z*c};
     }
 
+    template <typename U>
+    Child<T> &operator*=(U c){
+        x*=c;
+        y*=c;
+        z*=c;
+        return static_cast<Child<T> &>(*this);
+    }
+
+
+    template <typename U>
+    auto operator/(U c) const -> Child<decltype(T{} + U{})>{
+        return {x/c, y/c, z/c};
+    }
+
+    template <typename U>
+    Child<T> &operator/=(U c){
+        x/=c;
+        y/=c;
+        z/=c;
+        return static_cast<Child<T> &>(*this);
+    }
 
 
 };
