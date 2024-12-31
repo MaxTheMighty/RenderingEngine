@@ -6,7 +6,7 @@
 #include <boost/test/unit_test.hpp>
 #include "../../engine/include/vector3.h"
 #include "../../engine/include/point3.h"
-#pragma once
+
 
 BOOST_AUTO_TEST_SUITE(PointTests);
 

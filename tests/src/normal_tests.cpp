@@ -5,7 +5,7 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 #include "../../engine/include/normal3.h"
-#pragma once
+
 
 BOOST_AUTO_TEST_SUITE(NormalTests);
 
