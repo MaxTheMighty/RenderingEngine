@@ -17,6 +17,7 @@ set(TEST_SOURCES
         tests/src/vector_tests.cpp
         tests/src/point_tests.cpp
         tests/src/normal_tests.cpp
+        tests/src/util_tests.cpp
         # Add other test files here
 )
 
