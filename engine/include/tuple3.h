@@ -5,6 +5,7 @@
 #ifndef TUPLE3_H
 #define TUPLE3_H
 #include <math.h>
+#include <ostream>
 
 
 template <template <typename> class Child, typename T>
@@ -63,9 +64,12 @@ public:
 
 
     template <typename U>
-    auto operator*(U c) const -> Child<decltype(T{} + U{})> {
+    auto operator*(U c) const -> Child<decltype(T{} * U{})> {
         return {x*c, y*c, z*c};
     }
+
+
+
 
     template <typename U>
     Child<T> &operator*=(U c){
@@ -89,9 +93,18 @@ public:
         return static_cast<Child<T> &>(*this);
     }
 
-
+    friend std::ostream & operator<<(std::ostream &os, const Tuple3 &obj) {
+        return os
+               << "x: " << obj.x
+               << " y: " << obj.y
+               << " z: " << obj.z;
+    }
 };
 
-
+// Tuple3 Inline Functions
+template <template <class> class C, typename T, typename U>
+inline auto operator*(U s, Tuple3<C, T> t) -> C<decltype(T{} * U{})> {
+    return t * s;
+}
 
 #endif //TUPLE3_H
