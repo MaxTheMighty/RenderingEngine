@@ -156,6 +156,15 @@ BOOST_AUTO_TEST_CASE(Vector3AbsDot) {
 // }
 
 
+BOOST_AUTO_TEST_CASE(Vector3CrossProduct) {
+    Vector3f v = Vector3f(1,2,3);
+    Vector3f w = Vector3f(4,5,6);
+    Vector3f expected = Vector3f(-3,6,-3);
+    Vector3f actual = Vector3f::CrossProduct(v,w);
+    BOOST_CHECK(expected == actual);
+
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 
