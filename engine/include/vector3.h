@@ -12,6 +12,9 @@
 #include "tuplelength.h"
 #include <cmath>
 template <typename T>
+class Point3;
+
+template <typename T>
 
 class Vector3 : public Tuple3<Vector3, T> {
     public:
@@ -65,10 +68,29 @@ class Vector3 : public Tuple3<Vector3, T> {
         }
 
         static Vector3<T> FMA(Vector3<T> a, Vector3<T> b, Vector3<T> c) {
-          return (a*b) + c;
+          // return (a*b) + c;
         }
-        static Vector3<T> CrossProduct() {
 
+        static Vector3<T> CrossProduct(Vector3<T> v, Vector3<T> w) {
+          return { DifferenceOfProducts(v.y,w.z,v.z,w.y),
+                  DifferenceOfProducts(v.z,w.x,v.x,w.z),
+                  DifferenceOfProducts(v.x,w.y,v.y,w.x)
+          };
+        }
+
+
+
+        /*  This function is a reformulation of the standard CoordinateSystem function
+         *  to ensure floating point accuracy. It is achieved by having a sign variable that is a 1.0 with the
+         *  same signature of v1.z in an accurate way. This is then used within the calculation to ensure proper sigfigs
+         *
+        */
+        static void CoordinateSystem(Vector3<T> v1, Vector3<T>* v2, Vector3<T>* v3) {
+          float sign = std::copysign(1.0f,v1.z); //copy the magnitude to ensure accuracy
+          float one_over_vz = -1 / (v1.z + sign); // a
+          float vxvy_over_vz = (v1.x * v1.y) * one_over_vz; // b
+          *v2 = Vector3(1 + sign * (one_over_vz * (v1.x*v1.x)),sign * vxvy_over_vz,-sign * v1.x);
+          *v3 = Vector3(vxvy_over_vz,(sign + (v1.y*v1.y)*one_over_vz),-sign * v1.y);
         }
 
 
