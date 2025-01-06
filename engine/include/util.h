@@ -1,6 +1,7 @@
 //
 // Created by Maxwell Kozlov on 12/31/24.
 //
+#pragma once
 
 #include <cmath>
 #include <algorithm>

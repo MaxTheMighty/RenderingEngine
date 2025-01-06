@@ -6,6 +6,7 @@
 #include <boost/test/unit_test.hpp>
 #include "../../engine/include/vector3.h"
 #include "../../engine/include/normal3.h"
+#include "../../engine/include/point3.h"
 
 
 BOOST_AUTO_TEST_SUITE(VectorTests);
