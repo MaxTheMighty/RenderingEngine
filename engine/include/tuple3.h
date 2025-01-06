@@ -53,6 +53,10 @@ class Tuple3 {
             return {x-c.x, y-c.y, z-c.z};
         }
 
+        Child<T> operator-() const{
+            return {-x,-y,-z};
+        }
+
         // Do we need to do type matching here?
         template <typename U>
         Child<T> &operator+=(Child <U> c){
