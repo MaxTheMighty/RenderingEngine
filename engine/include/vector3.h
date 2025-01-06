@@ -6,18 +6,23 @@
 #define VECTOR3_H
 
 #include "tuple3.h"
-#include "point3.h"
-#include "normal3.h"
 #include "util.h"
 #include "tuplelength.h"
 #include <cmath>
+
 template <typename T>
 class Point3;
+
+template <typename T>
+class Normal3;
 
 template <typename T>
 
 class Vector3 : public Tuple3<Vector3, T> {
     public:
+        using Tuple3<Vector3, T>::x;
+        using Tuple3<Vector3, T>::y;
+        using Tuple3<Vector3, T>::z;
         Vector3(): Tuple3<Vector3, T>(){};
         Vector3(T x, T y, T z): Tuple3<Vector3, T>(x,y,z){};
 
