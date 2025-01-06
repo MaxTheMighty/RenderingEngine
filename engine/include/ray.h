@@ -6,6 +6,7 @@
 #include "tuple3.h"
 #include "point3.h"
 #include "vector3.h"
+#include "medium.h"
 
 #ifndef RAY_H
 #define RAY_H
@@ -13,8 +14,14 @@ class Ray {
     public:
         Point3f o;
         Vector3f d;
-        Ray(const Point3f o, Vector3f d) : o(o), d(o) {};
+        float time = 0;
+        Medium medium; // implemented later
+        Ray(const Point3f o, const Vector3f d) : o(o), d(d) {};
+        Ray(): o(), d(), time(){};
 
+        Point3f operator()(const float t) const {
+            return o + (t * d);
+        }
 
 
 
