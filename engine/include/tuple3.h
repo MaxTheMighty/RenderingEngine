@@ -6,6 +6,7 @@
 #define TUPLE3_H
 #include <math.h>
 #include <ostream>
+#include <cassert>
 
 
 template <template <typename> class Child, typename T>
