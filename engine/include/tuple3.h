@@ -95,6 +95,15 @@ class Tuple3 {
             return static_cast<Child<T> &>(*this);
         }
 
+        static Child<T> Min(Child<T> a, Child<T> b) {
+            return Child<T>{std::min(a.x,b.x),std::min(a.y,b.y),std::min(a.z,b.z)};
+        }
+
+        static Child<T> Max(Child<T> a, Child<T> b) {
+            return Child<T>{std::max(a.x,b.x),std::max(a.y,b.y),std::max(a.z,b.z)};
+        }
+
+
         friend std::ostream & operator<<(std::ostream &os, const Tuple3 &obj) {
             return os
                    << "x: " << obj.x
