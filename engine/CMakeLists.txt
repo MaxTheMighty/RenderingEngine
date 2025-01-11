@@ -11,6 +11,8 @@ add_executable(RenderingEngine main.cpp
         include/ray.h
         include/medium.h
         include/util.h
+        include/bounds2.h
+        include/bounds3.h
         src/tuple2.cpp
         src/tuple3.cpp
         src/normal3.cpp
