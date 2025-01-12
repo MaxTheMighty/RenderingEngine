@@ -57,6 +57,12 @@ class Bounds3{
         return xOverlap && yOverlap && zOverlap;
     }
 
+    static bool Inside(const Bounds3<T> &b, const Point3<T> p) {
+      return (p.x >= b.pMin.x && p.x <= b.pMax.x) &&
+             (p.y >= b.pMin.y && p.y <= b.pMax.y) &&
+             (p.z >= b.pMin.z && p.z <= b.pMax.z);
+    }
+
     //
 
 

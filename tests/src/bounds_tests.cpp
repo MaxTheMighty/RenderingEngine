@@ -97,5 +97,28 @@ BOOST_AUTO_TEST_CASE(BoundsDontOverlap2) {
     Bounds3f b2(Point3f(1,6,0),Point3f(5,8,0));
     BOOST_CHECK(!Bounds3f::Overlap(b1,b2));
 }
+
+BOOST_AUTO_TEST_CASE(BoundsInside) {
+    Bounds3f bounds = Bounds3f(Point3f(0,0,0),Point3f(100,100,100));
+    Point3f p = Point3f(50,50,50);
+    Point3f p2 = Point3f(1,1,1);
+    Point3f p3 = Point3f(99,1,20);
+    BOOST_CHECK(Bounds3f::Inside(bounds,p));
+    BOOST_CHECK(Bounds3f::Inside(bounds,p2));
+    BOOST_CHECK(Bounds3f::Inside(bounds,p3));
+}
+
+BOOST_AUTO_TEST_CASE(BoundsNotInside) {
+    Bounds3f bounds = Bounds3f(Point3f(0,0,0),Point3f(100,100,100));
+    Point3f p = Point3f(101,50,50);
+    Point3f p2 = Point3f(1,101,101);
+    Point3f p3 = Point3f(-1,10,30);
+    Point3f p4 = Point3f(-1,-1,-1);
+    BOOST_CHECK(!Bounds3f::Inside(bounds,p));
+    BOOST_CHECK(!Bounds3f::Inside(bounds,p2));
+    BOOST_CHECK(!Bounds3f::Inside(bounds,p3));
+    BOOST_CHECK(!Bounds3f::Inside(bounds,p4));
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
