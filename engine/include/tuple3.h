@@ -34,7 +34,7 @@ class Tuple3 {
             return z;
         }
 
-        bool operator==(Child<T> c) {
+        bool operator==(Child<T> c) const {
             return x == c.x && y == c.y && z == c.z;
         }
 
@@ -53,6 +53,18 @@ class Tuple3 {
         auto operator-(Child<U> c) const -> Child<decltype(T{} + U{})> {
             return {x-c.x, y-c.y, z-c.z};
         }
+
+        template <typename U>
+        auto operator+(U c) const -> Child<decltype(T{} + U{})> {
+            return {x+c, y+c, z+c};
+        }
+
+
+        template <typename U>
+        auto operator-(U c) const -> Child<decltype(T{} - U{})> {
+            return {x-c, y-c, z-c};
+        }
+
 
         Child<T> operator-() const{
             return {-x,-y,-z};
@@ -101,6 +113,11 @@ class Tuple3 {
 
         static Child<T> Max(Child<T> a, Child<T> b) {
             return Child<T>{std::max(a.x,b.x),std::max(a.y,b.y),std::max(a.z,b.z)};
+        }
+
+        // template <template <class> class C, typename T>
+        inline auto Lerp(float t, Child<T> t1, Child<T> t2) -> Child<decltype(float{} * T{})> {
+            return (t1 * (1-t)) + (t2 * t);
         }
 
 
