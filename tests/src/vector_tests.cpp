@@ -7,6 +7,7 @@
 #include "../../engine/include/vector3.h"
 #include "../../engine/include/normal3.h"
 #include "../../engine/include/point3.h"
+#include "../../engine/include/util.h"
 
 
 BOOST_AUTO_TEST_SUITE(VectorTests);
@@ -163,8 +164,14 @@ BOOST_AUTO_TEST_CASE(Vector3CrossProduct) {
     Vector3f expected = Vector3f(-3,6,-3);
     Vector3f actual = Vector3f::CrossProduct(v,w);
     BOOST_CHECK(expected == actual);
-
 }
+
+BOOST_AUTO_TEST_CASE(Vector3LGComparison) {
+    Vector3f v1 = Vector3f(0.2,0.2,0.2);
+    Vector3f v2 = Vector3f(100,200,300);
+    BOOST_CHECK(v1<v2);
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()
 

@@ -23,6 +23,7 @@ class Vector3 : public Tuple3<Vector3, T> {
         using Tuple3<Vector3, T>::x;
         using Tuple3<Vector3, T>::y;
         using Tuple3<Vector3, T>::z;
+        using Tuple3<Vector3, T>::operator==;
         Vector3(): Tuple3<Vector3, T>(){};
         Vector3(T x, T y, T z): Tuple3<Vector3, T>(x,y,z){};
 
@@ -58,9 +59,9 @@ class Vector3 : public Tuple3<Vector3, T> {
           // Look into why PBRT does it differently
           // return (std::acos(Dot(v,w) / (Length(v) * Length(w)))) * (180/M_PI);
           if (Dot(v, w) < 0)
-              return M_PI - 2 * SafeASin(Length(v + w) / 2);
+              return M_PI - 2 * util::SafeASin(Length(v + w) / 2);
           else
-              return 2 * SafeASin(Length(w - v) / 2);
+              return 2 * util::SafeASin(Length(w - v) / 2);
         }
 
         static T AbsDot(Vector3<T> v, Vector3<T> w) {
@@ -77,9 +78,9 @@ class Vector3 : public Tuple3<Vector3, T> {
         }
 
         static Vector3<T> CrossProduct(Vector3<T> v, Vector3<T> w) {
-          return { DifferenceOfProducts(v.y,w.z,v.z,w.y),
-                  DifferenceOfProducts(v.z,w.x,v.x,w.z),
-                  DifferenceOfProducts(v.x,w.y,v.y,w.x)
+          return { util::DifferenceOfProducts(v.y,w.z,v.z,w.y),
+                  util::DifferenceOfProducts(v.z,w.x,v.x,w.z),
+                  util::DifferenceOfProducts(v.x,w.y,v.y,w.x)
           };
         }
 
@@ -98,12 +99,10 @@ class Vector3 : public Tuple3<Vector3, T> {
           *v3 = Vector3(vxvy_over_vz,(sign + (v1.y*v1.y)*one_over_vz),-sign * v1.y);
         }
 
-
-
-
-
-
-
+        auto operator<=>(const Vector3 & vector3) const {
+          if (*this == vector3) {return 0;}
+          return Length(*this) < Length(vector3) ? -1 : 1;
+        };
 };
 
 using Vector3f = Vector3<float>;
