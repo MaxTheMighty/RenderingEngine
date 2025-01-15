@@ -17,7 +17,7 @@ public:
     using Tuple3<Point3, T>::y;
     using Tuple3<Point3, T>::z;
     using Tuple3<Point3, T>::operator+;
-
+    using Tuple3<Point3, T>::operator-;
 
     Point3(): Tuple3<Point3,T>(){};
     Point3(T x, T y, T z): Tuple3<Point3,T>(x,y,z){};

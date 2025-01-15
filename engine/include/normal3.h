@@ -74,9 +74,9 @@ class Normal3 : public Tuple3<Normal3, T> {
 
         static T CalculateAngleBetween(Normal3<T> n1, Normal3<T> n2) {
             if (Dot(n1,n2) < 0) {
-                return M_PI - 2 * SafeASin(Length(n1 + n2) / 2);
+                return M_PI - 2 * util::SafeASin(Length(n1 + n2) / 2);
             } else {
-                return 2 * SafeASin(Length(n2 - n1) / 2);
+                return 2 * util::SafeASin(Length(n2 - n1) / 2);
             }
         }
 
