@@ -13,6 +13,8 @@ add_executable(RenderingEngine main.cpp
         include/util.h
         include/bounds2.h
         include/bounds3.h
+        include/sphericalgeometry.h
+        include/vector3.h
         src/tuple2.cpp
         src/tuple3.cpp
         src/normal3.cpp
