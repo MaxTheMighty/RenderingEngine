@@ -132,12 +132,14 @@ BOOST_AUTO_TEST_CASE(Vector3Angle) {
 }
 
 BOOST_AUTO_TEST_CASE(Vector3Angle2) {
-    Vector3f vec3fa(0.6,0.8,0);
-    Vector3f vec3fb(0,0,1);
-    float expected = 90;
+    Vector3f vec3fa(5,-2,3);
+    Vector3f vec3fb(-4,5,7);
+    vec3fa = Vector3f::Normalize(vec3fa);
+    vec3fb = Vector3f::Normalize(vec3fb);
+    float expected = 98.8529174;
     float epsilon = 0.0001;
     float angle = Vector3f::CalculateAngleBetween(vec3fa,vec3fb) * (180 / 3.1415926f);
-    // std::cout << angle << std::endl;
+    std::cout << angle << std::endl;
     BOOST_CHECK(std::fabs(angle-expected) <= epsilon);
 }
 
