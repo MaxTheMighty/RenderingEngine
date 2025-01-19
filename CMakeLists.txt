@@ -20,6 +20,7 @@ set(TEST_SOURCES
         tests/src/util_tests.cpp
         tests/src/ray_tests.cpp
         tests/src/bounds_tests.cpp
+        tests/src/spherical_geometry_tests.cpp
         # Add other test files here
 )
 
