@@ -1,6 +1,3 @@
-//
-// Created by Maxwell Kozlov on 1/11/25.
-//
 
 #include <boost/test/unit_test.hpp>
 #include "../../engine/include/vector3.h"
