@@ -11,6 +11,8 @@ enable_testing()
 
 include_directories(${Boost_INCLUDE_DIRS})
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 
 # Create a list of all your test source files (excluding test_runner.cpp)
 set(TEST_SOURCES
@@ -50,3 +52,4 @@ set_tests_properties(all_tests
         ENVIRONMENT BOOST_TEST_SHOW_PROGRESS=yes
 )
 
+add_executable(main engine/src/main.cpp)
