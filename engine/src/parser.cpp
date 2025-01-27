@@ -30,6 +30,7 @@ Model Parser::ParseWavefront(std::string filepath){
     WavefrontLine line_type;
     Point3f vertex;
     Vector3i edge;
+    std::vector<Point3f> vertices;
     int vertex_count = 0;
     int edge_count = 0;
     int line_index = -1;
@@ -52,7 +53,7 @@ Model Parser::ParseWavefront(std::string filepath){
             vertex[vertex_count] = std::stof(line);
             vertex_count+=1;
           }
-          model_out.vertices.push_back(vertex);
+          vertices.push_back(vertex);
           continue;
         case WavefrontLine::face:
           edge = Vector3i();
@@ -64,10 +65,10 @@ Model Parser::ParseWavefront(std::string filepath){
             }
             substream = std::stringstream(line);
             std::getline(substream, face_index, '/'); //only get the first number
-            edge[edge_count] = stoi(face_index);
+            edge[edge_count] = stoi(face_index)-1;
             edge_count+=1;
           }
-          model_out.edges.push_back(edge);
+          model_out.triangles.emplace_back(vertices[edge.x],vertices[edge.y],vertices[edge.z]);
           continue;
         case WavefrontLine::texture_coordinate:
           continue;

@@ -2,6 +2,7 @@
 #include "tuple3.h"
 #include "point3.h"
 #include "vector3.h"
+#include "triangle.h"
 #include <vector>
 
 
@@ -16,7 +17,8 @@
 
 class Model{
 public:
-  std::vector<Point3f> vertices;
-  std::vector<Vector3i> edges;
+  // std::vector<Point3f> vertices;
+  // std::vector<Vector3i> edges;
+  std::vector<Triangle> triangles;
   Model();
 };

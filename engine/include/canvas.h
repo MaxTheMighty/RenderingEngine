@@ -2,6 +2,7 @@
 // Created by Maxwell Kozlov on 1/25/25.
 //
 #include <SDL3/sdl.h>
+#include "triangle.h"
 
 #ifndef CANVAS_H
 #define CANVAS_H
@@ -29,6 +30,6 @@ class Canvas{
   void RenderPresent();
   void DrawPixel(float x, float y);
   void DrawPixel(float x, float y, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255);
-  
+  void DrawTriangle(Triangle t);
 };
 #endif //CANVAS_H 

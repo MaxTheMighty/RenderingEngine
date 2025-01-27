@@ -16,52 +16,32 @@ int main() {
 
   
 
-    Model model; 
+    Model model;
     model = Parser::ParseWavefront("obj/face.obj");
-
 
     Canvas canvas("Rendering engine",SCREEN_WIDTH,SCREEN_HEIGHT,SDL_WINDOW_RESIZABLE);
     SDL_Event event;
+    int current_triangle = 0;
     while (true){
         while (SDL_PollEvent(&event) != false) {
             if (event.type == SDL_EVENT_QUIT) {
                 return -1;
             }
         }
-    canvas.RenderClearColor(0,0,0,255);
-    canvas.SetColor(255,255,255,255);
-    for(int i = 0; i < model.edges.size(); i++){
-        Vector3i vertex_index = model.edges[i];
-        Point3f edge_a = model.vertices[vertex_index.x-1];
-        Point3f edge_b = model.vertices[vertex_index.y-1];
-        Point3f edge_c = model.vertices[vertex_index.z-1];
-
-      // normalize
-        edge_a = edge_a + 1;
-        edge_a /= 2;
-        edge_a.x *= SCREEN_WIDTH;
-        edge_a.y *= SCREEN_HEIGHT;
-        edge_a.y = SCREEN_HEIGHT - edge_a.y;
-
-        edge_b = edge_b + 1;
-        edge_b /= 2;
-        edge_b.x *= SCREEN_WIDTH;
-        edge_b.y *= SCREEN_HEIGHT;
-        edge_b.y = SCREEN_HEIGHT - edge_b.y;
-
-        edge_c = edge_c + 1;
-        edge_c /= 2;
-        edge_c.x *= SCREEN_WIDTH;
-        edge_c.y *= SCREEN_HEIGHT;
-        edge_c.y = SCREEN_HEIGHT - edge_c.y;
 
 
-        canvas.DrawLine(edge_a.x,edge_a.y,edge_b.x,edge_b.y);
-        canvas.DrawLine(edge_b.x,edge_b.y,edge_c.x,edge_c.y);
-        canvas.DrawLine(edge_a.x,edge_a.y,edge_c.x,edge_c.y);
+    if (current_triangle < model.triangles.size()) {
+        canvas.RenderClearColor(0,0,0,255);
+        canvas.SetColor(255,255,255,255);
+        for(int i = 0; i < current_triangle; i++){
+            canvas.DrawTriangle(model.triangles[i]);
+        }
+        SDL_Delay(5);
+        canvas.RenderPresent();
     }
+    current_triangle+=1;
 
-    canvas.RenderPresent();
+    // canvas.RenderPresent();
 }
 
 

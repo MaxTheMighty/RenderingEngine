@@ -55,6 +55,28 @@ void Canvas::DrawPixel(float x, float y){
 
 }
 
+void Canvas::DrawTriangle(Triangle t) {
+
+  // normalize
+  for (int i = 0; i < t.vertices.size(); i++) {
+    t.vertices[i] = t.vertices[i] + 1;
+    t.vertices[i] /= 2;
+    t.vertices[i].x *= screen_width;
+    t.vertices[i].y *= screen_height;
+    t.vertices[i].y = screen_height- t.vertices[i].y;
+  }
+
+
+  Point3f edge_a = t.vertices[0];
+  Point3f edge_b = t.vertices[1];
+  Point3f edge_c = t.vertices[2];
+
+
+  DrawLine(edge_a.x,edge_a.y,edge_b.x,edge_b.y);
+  DrawLine(edge_b.x,edge_b.y,edge_c.x,edge_c.y);
+  DrawLine(edge_a.x,edge_a.y,edge_c.x,edge_c.y);
+}
+
 void Canvas::DrawPixel(float x, float y, Uint8 r, Uint8 g, Uint8 b, Uint8 a){
   this->SetColor(r,g,b,a);
   this->DrawPixel(x,y);

@@ -30,6 +30,8 @@ add_executable(RenderingEngine main.cpp
         src/canvas.cpp
         src/model.cpp
         src/parser.cpp
+        include/triangle.h
+        src/triangle.cpp
 )
 
 target_include_directories(RenderingEngine PRIVATE /Users/maxwell/Programming/C++/RenderingEngine/engine/external/sdl/include/) #SDL headers
